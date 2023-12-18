@@ -50,6 +50,8 @@
   position: fixed;
   left: 0;
   top: 10%;
+  height: 100%;
+  width: 15%;
 }
 .habitsntaskbtn {
   display: flex;
@@ -58,3 +60,8 @@
   border-width: 1px;
   align-items: center;
   }
+  .h1header {
+    width: 100%;
+    border: 3px solid black;
+    border-top: none;
+    }
