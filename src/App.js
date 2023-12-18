@@ -1,12 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
-import {Route, Router} from './react-router-dom';
+import Startsida from './Startsida';
 
 function App() {
   return (
     <div className="App">
-   
+      <Startsida />
     </div>
+    
   );
 }
 
