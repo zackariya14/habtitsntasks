@@ -1,0 +1,104 @@
+
+$color-dark: #1f1f1f;
+$color-orange: #ff8800;
+$color-white: #ffffff;
+$box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+body {
+  background: $color-orange;
+  font-family: 'Roboto', sans-serif;
+}
+
+.header{
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);  
+}
+
+.nav {
+  display: flex;
+  padding: 0 1em;
+  list-style: none;
+  flex-direction: row ;
+  @media screen and (min-width: 640px) {
+    -webkit-flex-flow: row wrap;
+    justify-content: flex-end;
+  }
+  a {
+    display: block;
+    padding: 1.5em;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #1f1f1f;
+    &:hover {
+      color: #ff8800;
+    }
+  }
+  .has-sub-nav {
+    position: relative; 
+    
+    & > a:after {
+      content: ' ';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      margin: 0 0 0 0.5em;
+      vertical-align: middle;
+      border-radius: 50%;
+      background-color: #1f1f1f;
+      animation: flash 1s infinite;
+    }
+    &:hover,
+    &.active {
+      & > a {
+        color: #ff8800;
+        &:after {
+          background-color: #ff8800;
+          animation: none;
+        }
+      }
+      .sub-nav {
+        display: block;
+      }
+    }
+  }
+  .sub-nav {
+    display: none;
+    position: relative;
+    @media screen and (min-width: 640px) {
+      position: absolute;
+      background-color: #ffffff;
+      width: 260px;
+      top: 100%;
+      right: 0;
+      left: auto;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+      border: 1px solid #cccccc;
+    }
+    
+    a {
+      padding: 1em;
+    }      
+  }
+}
+
+@keyframes flash {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.main{
+  display: flex;
+  padding: 2em;
+  justify-content: center;
+}
+
+.main h1 {
+  text-align:center;
+  span {
+    display: block;
+  }
+}
