@@ -1,6 +1,8 @@
 import React from "react";
 import "./App.css";
-import { Link} from "react-router-dom";
+import Friends from "./friends";
+import { Link } from "react-router-dom";
+
 function Startsida() {
   return (
     
@@ -30,11 +32,15 @@ function Startsida() {
 
       {/* <h1 className="h1header">HabitsNTasks</h1>
       <div className="habitsntaskbtn">
-        <h2 onClick={<Startsida />}> Habits </h2>
-        <h2 onClick={<Startsida />}> Tasks </h2>
+        <Link to="/Task">
+          <h2>Task </h2>
+        </Link>
+        <Link to="/Habit">
+          <h2> Habit </h2>
+        </Link>
       </div>
       <div className="friendsbtn">
-        <Link to='/friends'>
+        <Link to="/friends">
           <h3>Friends</h3>
         </Link>
       </div> */}
