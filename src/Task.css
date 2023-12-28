@@ -11,22 +11,28 @@ label {
   justify-content: center;
   height: 15vh;
 }
-
+.Tasks{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .BtnD {
   background-color: red;
   color: black;
 }
-
+.BtnC-Completed {
+  background-color: green;
+  
+}
 .TaskBlock {
   border: solid 2px black;
   display: block;
   margin-bottom: 10px;
   padding: 5px;
+  max-width: 40vh;
 }
 
 
-.BtnC-Completed {
-  background-color: green;
-  
-}
+
 
