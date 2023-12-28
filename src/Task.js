@@ -156,7 +156,7 @@ export default function Task() {
           <p>Time Estimate: {task.timeEstimate}</p>
           <p>Task Type: {task.taskType}</p>
           <button
-            className={`BtnC ${task.completed ? "BtnC-Completed" : "BtnC-Incomplete"}`}
+            className={`BtnC ${task.completed ? "BtnC-complete" : "BtnC-Incomplete"}`}
             onClick={() => handleToggleCompletion(index)}
           >
             {task.completed ? "Mark Incomplete" : "Mark Complete"}
