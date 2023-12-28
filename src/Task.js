@@ -82,8 +82,27 @@ export default function Task() {
   };
 
   return (
+    
     <div className="Tasks">
-      <Link to="/">Startsida</Link>
+      <header class="header" >
+        <h1  className="App" style={{fontFamily: 'Cairo Play', fontSize: '40px'}}> HabitsNTasks</h1>
+        <nav role="navigation">
+          <ul class="nav">
+            <li>
+              <Link to="/Habit">Habits</Link>
+            </li>
+            <li class="has-sub-nav">
+              <Link to="/Task"> <strong>Tasks</strong> </Link>
+            </li>
+            <li>
+              <Link to="/friends">Friends</Link>
+            </li>
+            <li>
+              <Link to='/'>Home</Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
       <div className="TaskH">
         <h1>Tasks</h1>
       </div>

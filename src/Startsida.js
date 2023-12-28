@@ -1,49 +1,54 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
-import Friends from "./friends";
 import { Link } from "react-router-dom";
+import LatestFriends from "./components/Latestfriend";
+import LatestTask from "./components/Latesttask";
 
 function Startsida() {
+  const [latestFriends, setLatestFriends] = useState([]);
+
+  useEffect(() => {
+    const fetchLatestFriends = async () => {
+      try {
+        const response = await fetch("https://randomuser.me/api/?results=5");
+        const data = await response.json();
+
+        setLatestFriends(data.results);
+      } catch (error) {
+        console.error("Error fetching latest friends:", error);
+      }
+    };
+
+    fetchLatestFriends();
+  }, []); 
+
   return (
-    
     <div>
       <header class="header">
-        <h1> HabitsNTasks</h1>
-  <nav role="navigation">
-    <ul class="nav">
-      <li><a href="#0">Habits</a></li>
-      <li><a href="#0">Tasks</a></li>
-      <li class="has-sub-nav">
-        <Link to='/friends'>
-        Friends
-        </Link>
-        <ul class="sub-nav">
-          <li><a href="#">View all</a></li>
-          
-          <li><a href="#0">Skatepark</a></li>
-          <li><a href="#0">Street</a></li>
-        </ul>
-      </li>
-      <li><a href="#0">NewTask</a></li>
-      <li><a href="#0">NewHabit</a></li>
-    </ul>    
-  </nav>  
-</header>
+        <h1  className="App" style={{fontFamily: 'Cairo Play', fontSize: '40px'}}> HabitsNTasks</h1>
+        <nav role="navigation">
+          <ul class="nav">
+            <li>
+              <Link to="/Habit">Habits</Link>
+            </li>
+            <li>
+              <Link to="/Task"> Tasks </Link>
+            </li>
+            <li>
+              <Link to="/friends">Friends</Link>
+            </li>
+            <li class="has-sub-nav">
+              <Link to='/'><b>Home</b></Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <LatestFriends latestFriends={latestFriends} />
+      <LatestTask />
 
-      {/* <h1 className="h1header">HabitsNTasks</h1>
-      <div className="habitsntaskbtn">
-        <Link to="/Task">
-          <h2>Task </h2>
-        </Link>
-        <Link to="/Habit">
-          <h2> Habit </h2>
-        </Link>
-      </div>
-      <div className="friendsbtn">
-        <Link to="/friends">
-          <h3>Friends</h3>
-        </Link>
-      </div> */}
+      
+
     </div>
   );
 }
