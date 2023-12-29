@@ -35,11 +35,7 @@ function LatestTask() {
           <p>Type: {task.description}</p>
         </div>
       ))}
-      <button>
-      <Link to='/Task'>
-        See more tasks
-        </Link>
-      </button>
+      
     </div>
   );
 }

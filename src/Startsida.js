@@ -1,11 +1,11 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import "./App.css";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import "./App.css";
 import LatestFriends from "./components/Latestfriend";
-import LatestTask from "./components/Latesttask";
 import FastHabitComponent from "./components/FastHabit";
-import "./Habit.css";
+import Task from "./Task";
+import LatestTask from "./components/Latesttask";
+
 function Startsida() {
   const [latestFriends, setLatestFriends] = useState([]);
   const [FastHabit, setFastHabit] = useState([
@@ -44,7 +44,7 @@ function Startsida() {
   return (
     <div>
       <header class="header">
-        <h1  className="App" style={{fontFamily: 'Cairo Play', fontSize: '40px'}}> HabitsNTasks</h1>
+        <h1 className="App" style={{ fontFamily: 'Cairo Play', fontSize: '40px' }}> HabitsNTasks</h1>
         <nav role="navigation">
           <ul class="nav">
             <li>
@@ -65,19 +65,25 @@ function Startsida() {
       <h1 className="Dashboard">Dashboard</h1>
       <LatestFriends latestFriends={latestFriends} />
       <div className={`TaskBlocks "completed" : ""}`}>
-      <LatestTask />
+        <LatestTask />
+        <button>
+      <Link to='/Task'>
+        See more tasks
+        </Link>
+      </button>
       </div>
       <h2 className="h2habit">Current Habits</h2>
-      <div className="habitContainer"> 
-      <FastHabitComponent FastHabit={FastHabit}/> 
-      <Link to="Habit">See more</Link>
+      <div className="habitContainer">
+        <FastHabitComponent key={FastHabit} value={setFastHabit} />
+              
       </div>
-      
-      
-
-      
-
+      <button className="habitsbtn">
+      <Link to='/habit'>
+        See more habits
+        </Link>
+      </button>
     </div>
   );
 }
-export default Startsida
+
+export default Startsida;
