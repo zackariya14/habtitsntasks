@@ -1,6 +1,16 @@
 .Hab{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+.Container{
+    left: 39%;
+    position: relative;
+    max-width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: space-evenly;
+
 }

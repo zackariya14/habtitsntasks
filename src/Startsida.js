@@ -4,9 +4,27 @@ import "./App.css";
 import { Link } from "react-router-dom";
 import LatestFriends from "./components/Latestfriend";
 import LatestTask from "./components/Latesttask";
-
+import FastHabitComponent from "./components/FastHabit";
+import "./Habit.css";
 function Startsida() {
   const [latestFriends, setLatestFriends] = useState([]);
+  const [FastHabit, setFastHabit] = useState([
+    {
+      Title: "Gym",
+      streak: 5,
+      priority: "High",
+    },
+    {
+      Title: "Study",
+      streak: 3,
+      priority: "High",
+    },
+    {
+      Title: "Book reading",
+      streak: 20,
+      priority: "medium",
+    },
+  ]);
 
   useEffect(() => {
     const fetchLatestFriends = async () => {
@@ -44,13 +62,22 @@ function Startsida() {
           </ul>
         </nav>
       </header>
+      <h1 className="Dashboard">Dashboard</h1>
       <LatestFriends latestFriends={latestFriends} />
+      <div className={`TaskBlocks "completed" : ""}`}>
       <LatestTask />
+      </div>
+      <h2 className="h2habit">Current Habits</h2>
+      <div className="habitContainer"> 
+      <FastHabitComponent FastHabit={FastHabit}/> 
+      <Link to="Habit">See more</Link>
+      </div>
+      
+      
 
       
 
     </div>
   );
 }
-
-export default Startsida;
+export default Startsida

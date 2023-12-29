@@ -27,7 +27,7 @@ function LatestTask() {
   }, []);
 
   return (
-    <div  className={`TaskBlocks "completed" : ""}`}>
+    <div  >
         <h2 style={{textDecoration:'underline'}}>Current tasks</h2>
       {tasks.map((task, index) => (
         <div key={index}>
