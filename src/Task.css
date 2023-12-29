@@ -1,8 +1,10 @@
+
 label {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
+
 .TaskH {
   color: aqua;
   display: flex;
@@ -11,20 +13,23 @@ label {
   justify-content: center;
   height: 15vh;
 }
-.Tasks{
+
+.Tasks {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+
 .BtnD {
   background-color: red;
   color: black;
 }
-.BtnC-Completed {
+
+.BtnC-complete {
   background-color: green;
-  
 }
+
 .TaskBlock {
   border: solid 2px black;
   display: block;
@@ -33,8 +38,9 @@ label {
   max-width: 40vh;
 }
 
-
-
+.TaskBlock.Completed {
+  background-color: green;
+}
 
 .TaskBlocks {
   border: solid 2px black;
@@ -42,9 +48,8 @@ label {
   padding: 5px;
   max-width: 370px;
   position: absolute;
-  top: 20%;
+  top: 28%;
   right: 0px;
   text-align: center;
   min-width: 370px;
 }
-

@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import LatestFriends from "./components/Latestfriend";
 import LatestTask from "./components/Latesttask";
 
+ 
+
 function Startsida() {
   const [latestFriends, setLatestFriends] = useState([]);
 
@@ -26,6 +28,7 @@ function Startsida() {
   return (
     <div>
       <header class="header">
+       
         <h1  className="App" style={{fontFamily: 'Cairo Play', fontSize: '40px'}}> HabitsNTasks</h1>
         <nav role="navigation">
           <ul class="nav">
@@ -44,10 +47,10 @@ function Startsida() {
           </ul>
         </nav>
       </header>
+      
       <LatestFriends latestFriends={latestFriends} />
       <LatestTask />
 
-      
 
     </div>
   );
