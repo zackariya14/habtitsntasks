@@ -3,6 +3,7 @@ import "./App.css";
 import { Link } from "react-router-dom";
 import FriendCard from "./components/Friendcard";
 
+
 function Friends() {
   const [friends, setFriends] = useState([]);
   const [yourFriends, setYourFriends] = useState([]);
@@ -25,6 +26,7 @@ function Friends() {
       .then((data) => {
         const newFriendList = [...yourFriends, data.results[0]];
         setYourFriends(newFriendList);
+        
 
         const newLatestFriends = [
           data.results[0],

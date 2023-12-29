@@ -1,9 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Habit.css";
-
+import FastHabitComponent from "./components/FastHabit";
 
 export default function HabitTracker() {
+  const [FastHabit, setFastHabit] = useState([
+    {
+      Title: "Gym",
+      streak: 5,
+      priority: "High",
+    },
+    {
+      Title: "Study",
+      streak: 3,
+      priority: "High",
+    },
+    {
+      Title: "Book reading",
+      streak: 20,
+      priority: "medium",
+    },
+  ]);
   const [habits, setHabits] = useState([]);
   const [newHabit, setNewHabit] = useState({
     title: "",
@@ -19,10 +36,7 @@ export default function HabitTracker() {
   };
 
   const addHabit = () => {
-    setHabits((prevHabits) => [
-      ...prevHabits,
-      { ...newHabit, id: Date.now() },
-    ]);
+    setHabits((prevHabits) => [...prevHabits, { ...newHabit, id: Date.now() }]);
     setNewHabit({ title: "", streak: 0, priority: "low" });
   };
 
@@ -50,8 +64,7 @@ export default function HabitTracker() {
 
   const filteredAndSortedHabits = habits
     .filter(
-      (habit) =>
-        filterPriority === "all" || habit.priority === filterPriority
+      (habit) => filterPriority === "all" || habit.priority === filterPriority
     )
     .sort((a, b) => {
       if (sortOption === "streakDesc") return b.streak - a.streak;
@@ -65,12 +78,20 @@ export default function HabitTracker() {
 
   return (
     <div>
-     <header class="header">
-        <h1  className="App" style={{fontFamily: 'Cairo Play', fontSize: '40px'}}> HabitsNTasks</h1>
+      <header class="header">
+        <h1
+          className="App"
+          style={{ fontFamily: "Cairo Play", fontSize: "40px" }}
+        >
+          {" "}
+          HabitsNTasks
+        </h1>
         <nav role="navigation">
           <ul class="nav">
             <li class="has-sub-nav">
-              <Link to="/Habit"><b>Habits</b></Link>
+              <Link to="/Habit">
+                <b>Habits</b>
+              </Link>
             </li>
             <li>
               <Link to="/Task"> Tasks </Link>
@@ -79,17 +100,16 @@ export default function HabitTracker() {
               <Link to="/friends"> Friends</Link>
             </li>
             <li>
-              <Link to='/'>Home</Link>
+              <Link to="/">Home</Link>
             </li>
           </ul>
         </nav>
       </header>
-      <Link to="/">Startsida</Link>
 
       <div>
         <h1>Habit Tracker</h1>
 
-        <div className="Hab">
+        <div className="Container">
           <h2>Create a New Habit</h2>
           <label>
             Title:
@@ -116,48 +136,55 @@ export default function HabitTracker() {
         </div>
 
         <div>
-          <h2>My Habits</h2>
-          <label>
-            Filter Priority:
-            <select
-              value={filterPriority}
-              onChange={(e) => setFilterPriority(e.target.value)}
-            >
-              <option value="all">All</option>
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
-            </select>
-          </label>
-          <label>
-            Sort By:
-            <select
-              value={sortOption}
-              onChange={(e) => setSortOption(e.target.value)}
-            >
-              <option value="streakDesc">Streak (High to Low)</option>
-              <option value="streakAsc">Streak (Low to High)</option>
-              <option value="priorityDesc">Priority (High to Low)</option>
-              <option value="priorityAsc">Priority (Low to High)</option>
-            </select>
-          </label>
-
-          {filteredAndSortedHabits.map((habit, index) => (
-            <div key={index}>
-              <h3>{habit.title}</h3>
-              <p>Streak: {habit.streak}</p>
-              <p>Priority: {habit.priority}</p>
-              <button onClick={() => increaseStreak(index)}>
-                Increase Streak
-              </button>
-              <button onClick={() => decreaseStreak(index)}>
-                Decrease Streak
-              </button>
-              <button onClick={() => resetStreak(index)}>Reset Streak</button>
-            </div>
-          ))}
+          <div className="Container">
+            <label>
+              Filter Priority:
+              <select
+                value={filterPriority}
+                onChange={(e) => setFilterPriority(e.target.value)}
+              >
+                <option value="all">All</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+            </label>
+            <label>
+              Sort By:
+              <select
+                value={sortOption}
+                onChange={(e) => setSortOption(e.target.value)}
+              >
+                <option value="streakDesc">Streak (High to Low)</option>
+                <option value="streakAsc">Streak (Low to High)</option>
+                <option value="priorityDesc">Priority (High to Low)</option>
+                <option value="priorityAsc">Priority (Low to High)</option>
+              </select>
+            </label>
+          </div>
+          <div className="Hab">
+            {" "}
+            <FastHabitComponent FastHabit={FastHabit} />{" "}
+          </div>
+          <div className="Hab">
+            {filteredAndSortedHabits.map((habit, index) => (
+              <div key={index}>
+                <h3>{habit.title}</h3>
+                <p>Streak: {habit.streak}</p>
+                <p>Priority: {habit.priority}</p>
+                <button onClick={() => increaseStreak(index)}>
+                  Increase Streak
+                </button>
+                <button onClick={() => decreaseStreak(index)}>
+                  Decrease Streak
+                </button>
+                <button onClick={() => resetStreak(index)}>Reset Streak</button>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+      
     </div>
   );
 }

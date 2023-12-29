@@ -83,7 +83,7 @@ export default function Task() {
 
   return (
     
-    <div className="Tasks">
+    <div >
       <header class="header" >
         <h1  className="App" style={{fontFamily: 'Cairo Play', fontSize: '40px'}}> HabitsNTasks</h1>
         <nav role="navigation">
@@ -107,7 +107,7 @@ export default function Task() {
         <h1>Tasks</h1>
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <form className="Tasks" onSubmit={handleSubmit}>
         <label>
           Title:
           <input
@@ -156,7 +156,7 @@ export default function Task() {
           <p>Time Estimate: {task.timeEstimate}</p>
           <p>Task Type: {task.taskType}</p>
           <button
-            className={`BtnC ${task.completed ? "BtnC-complete" : "BtnC-Incomplete"}`}
+            className={`BtnC ${task.completed ? "BtnC-Completed" : "BtnC-Incomplete"}`}
             onClick={() => handleToggleCompletion(index)}
           >
             {task.completed ? "Mark Incomplete" : "Mark Complete"}
