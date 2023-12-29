@@ -1,20 +1,10 @@
-// LatestTask.js
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const CounterPage = (props) => {
-  return (
-    <div>
-      <Link to="/">Home</Link>
-      <h2>Counter</h2>
-      <button onClick={() => props.changeValue(-1)}>-1</button>
-      <button onClick={() => props.changeValue(1)}>+1</button>
-    </div>
-  );
-};
+
 
 function LatestTask() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([]); 
 
   useEffect(() => {
     const fetchRandomActivity = async () => {
@@ -30,7 +20,7 @@ function LatestTask() {
 
         setTasks((prevTasks) => [...prevTasks, newActivity]);
       } catch (error) {
-        console.error("Error fetching random activity:", error);
+        console.error("Fel vid hämtning av slumpaktivitet:", error);
       }
     };
 
@@ -38,17 +28,18 @@ function LatestTask() {
   }, []);
 
   return (
-    <div className={`TaskBlocks ${tasks.completed ? "completed" : ""}`}>
-      <h2 style={{ textDecoration: 'underline' }}>Current tasks</h2>
+    <div  className={`TaskBlocks "completed" : ""}`}>
+        <h2 style={{textDecoration:'underline'}}>Current tasks</h2>
       {tasks.map((task, index) => (
         <div key={index}>
           <h3>{task.title}</h3>
           <p>Type: {task.description}</p>
         </div>
       ))}
-      <CounterPage changeValue={(value) => setTasks([...tasks, value])} />
       <button>
-        <Link to="/Task">See more tasks</Link>
+      <Link to='/Task'>
+        See more tasks
+        </Link>
       </button>
     </div>
   );
