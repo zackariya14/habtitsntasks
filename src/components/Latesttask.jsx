@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 
-
 function LatestTask() {
   const [tasks, setTasks] = useState([]); 
 
@@ -28,7 +27,7 @@ function LatestTask() {
   }, []);
 
   return (
-    <div  className={`TaskBlocks "completed" : ""}`}>
+    <div  >
         <h2 style={{textDecoration:'underline'}}>Current tasks</h2>
       {tasks.map((task, index) => (
         <div key={index}>

@@ -20,6 +20,7 @@ body {
   padding: 0 1em;
   list-style: none;
   flex-direction: row ;
+  flex-direction: row-reverse;
   @media screen and (min-width: 640px) {
     -webkit-flex-flow: row wrap;
     justify-content: flex-end;
