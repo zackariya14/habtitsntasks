@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Task.css";
+import LatestTask from "./components/Latesttask";
 
 export default function Task() {
   const [tasks, setTasks] = useState([]);
@@ -169,6 +170,10 @@ export default function Task() {
           </button>
         </div>
       ))}
+      <div className="TaskBlock">
+         <LatestTask /> 
+      </div>
+     
     </div>
   );
 }

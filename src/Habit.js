@@ -83,7 +83,6 @@ export default function HabitTracker() {
           className="App"
           style={{ fontFamily: "Cairo Play", fontSize: "40px" }}
         >
-          {" "}
           HabitsNTasks
         </h1>
         <nav role="navigation">
@@ -163,8 +162,8 @@ export default function HabitTracker() {
             </label>
           </div>
           <div className="Hab">
-            {" "}
-            <FastHabitComponent FastHabit={FastHabit} />{" "}
+      
+          <FastHabitComponent FastHabit={FastHabit} setFastHabit={setFastHabit} />
           </div>
           <div className="Hab">
             {filteredAndSortedHabits.map((habit, index) => (

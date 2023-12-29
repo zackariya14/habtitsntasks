@@ -161,4 +161,11 @@
               position: relative;
               left: 45%;
               font-size: 40px;
+              max-width: 100px;
             }
+            .habitsbtn{
+              position: absolute;
+              top: 84%;
+              left: 57%;
+              max-width: 300px;
+                      }
