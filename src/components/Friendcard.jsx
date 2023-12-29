@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function FriendCard({ friend, onToggleInfo }) {
+function FriendCard({ friend }) {
   const [expanded, setExpanded] = useState(false);
 
   const toggleInfo = () => {
