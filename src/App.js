@@ -10,7 +10,7 @@ import Task from './Task';
 function App() {
   
   return (
-    <div className='App'>
+    <div>
 <Router>
   <Routes>
     <Route path="/" element={<Startsida />} />
