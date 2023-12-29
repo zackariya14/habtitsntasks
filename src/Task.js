@@ -13,6 +13,8 @@ export default function Task() {
     completed: false,
   });
   const [editIndex, setEditIndex] = useState(null);
+  const [categoryFilter, setCategoryFilter] = useState("all");
+  const [sortBy, setSortBy] = useState("titleAsc");
 
   useEffect(() => {
     const fetchRandomActivity = async () => {
@@ -82,17 +84,31 @@ export default function Task() {
     });
   };
 
+  const filteredAndSortedTasks = tasks
+    .filter((task) => categoryFilter === "all" || task.taskType === categoryFilter)
+    .sort((a, b) => {
+      if (sortBy === "titleAsc") {
+        return a.title.localeCompare(b.title);
+      } else if (sortBy === "titleDesc") {
+        return b.title.localeCompare(a.title);
+      } else if (sortBy === "timeEstimateAsc") {
+        return a.timeEstimate.localeCompare(b.timeEstimate);
+      } else if (sortBy === "timeEstimateDesc") {
+        return b.timeEstimate.localeCompare(a.timeEstimate);
+      }
+      return 0;
+    });
+
   return (
-    
-    <div >
-      <header class="header" >
-        <h1  className="App" style={{fontFamily: 'Cairo Play', fontSize: '40px'}}> HabitsNTasks</h1>
+    <div>
+      <header className="header">
+        <h1 className="App" style={{ fontFamily: 'Cairo Play', fontSize: '40px' }}> HabitsNTasks</h1>
         <nav role="navigation">
-          <ul class="nav">
+          <ul className="nav">
             <li>
               <Link to="/Habit">Habits</Link>
             </li>
-            <li class="has-sub-nav">
+            <li className="has-sub-nav">
               <Link to="/Task"> <strong>Tasks</strong> </Link>
             </li>
             <li>
@@ -137,12 +153,15 @@ export default function Task() {
         </label>
         <label>
           Task Type:
-          <input
-            type="text"
+          <select
             name="taskType"
             value={newTask.taskType}
             onChange={handleInputChange}
-          />
+          >
+            <option value="hushållssysslor">Hushållssysslor</option>
+            <option value="aktivitet med vänner">Aktivitet med vänner</option>
+            <option value="jobbrelaterad ärende">Jobbrelaterad ärende</option>
+          </select>
         </label>
         <button type="button" onClick={handleRandomActivity}>
           Get Random Task
@@ -150,14 +169,44 @@ export default function Task() {
         <button type="submit">{editIndex !== null ? 'Update Task' : 'Add Task'}</button>
       </form>
 
-      {tasks.map((task, index) => (
+      
+      <label>
+        Category Filter:
+        <select
+          name="categoryFilter"
+          value={categoryFilter}
+          onChange={(e) => setCategoryFilter(e.target.value)}
+        >
+          <option value="all">All Categories</option>
+          <option value="hushållssysslor">Hushållssysslor</option>
+          <option value="aktivitet med vänner">Aktivitet med vänner</option>
+          <option value="jobbrelaterad ärende">Jobbrelaterad ärende</option>
+        </select>
+      </label>
+
+   
+      <label >
+        Sort By:
+        <select
+          name="sortBy"
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value)}
+        >
+          <option value="titleAsc">Title (A-Z)</option>
+          <option value="titleDesc">Title (Z-A)</option>
+          <option value="timeEstimateAsc">Time Estimate (High)</option>
+          <option value="timeEstimateDesc">Time Estimate (Low)</option>
+        </select>
+      </label>
+
+      {filteredAndSortedTasks.map((task, index) => (
         <div key={index} className={`TaskBlock ${task.completed ? "completed" : ""}`}>
           <h3>{task.title}</h3>
           <p>Description: {task.description}</p>
           <p>Time Estimate: {task.timeEstimate}</p>
           <p>Task Type: {task.taskType}</p>
           <button
-            className={`BtnC ${task.completed ? "BtnC-Completed" : "BtnC-Incomplete"}`}
+            className={`BtnC-Complete ${task.completed ? "BtnC-complete" : "BtnC-Incomplete"}`}
             onClick={() => handleToggleCompletion(index)}
           >
             {task.completed ? "Mark Incomplete" : "Mark Complete"}
